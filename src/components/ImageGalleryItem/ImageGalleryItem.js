@@ -1,10 +1,10 @@
+import {StyledItem, StyledImage} from './ImageGalleryItem.styled'
 
-
-export const ImageGalleryItem = ({ previewURL: src }) => {
+export const ImageGalleryItem = ({ item }) => {
 
     return (
-        <li >
-  <img src={src} alt="" />
-</li>
+        <StyledItem >
+            <StyledImage src={item.userImageURL} alt="" />
+        </StyledItem>
     )
  }

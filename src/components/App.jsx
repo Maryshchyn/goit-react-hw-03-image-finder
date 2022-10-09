@@ -1,7 +1,10 @@
 import { Component } from "react"
 import Searchbar from './Searchbar/Searchbar'
 // import {ImageGalleryItem} from './ImageGalleryItem/ImageGalleryItem'
-import {ImageGallery} from './ImageGallery/ImageGallery'
+import { ImageGallery } from './ImageGallery/ImageGallery'
+// import {Button} from './Button/Button'
+
+
 export class App extends Component  {
   state = {
     foto: null,
@@ -14,7 +17,7 @@ export class App extends Component  {
   
   componentDidUpdate(_, prevState) {
     
-    if (prevState.query !== this.state.query) {
+    if (prevState.query !== this.state.query || prevState.page !== this.state.page) {
       const API_KEY = '29484059-072d6a524128743cd311d2d11';
       const thisFoto = this.state.query;
       const thisPage = this.state.page;
@@ -25,6 +28,7 @@ export class App extends Component  {
         .then(console.log)
         .finally(()=>this.setState({loading: false}))
     }
+    
   }
   
 
@@ -55,11 +59,12 @@ export class App extends Component  {
 
   render() {
     return (<>
-      {/* {this.state.foto && <div>{ this.state.foto.hits[0].id}</div>} */}
-      {/* {this.state.items && <ImageGallery items={this.state.items } />} */}
-      
+     
+      {/* <Button onClick={this.loadMore} loadMore={this.state.page} /> */}
       <Searchbar onSubmit={this.handlerFormSubmit} />
-     <ImageGallery items={this.state.items }/>
+      <ImageGallery items={this.state.items} />
+      <button onClick={this.loadMore}>Load more</button>
+      
       </>
 
 
@@ -89,7 +94,7 @@ export class App extends Component  {
 //     />
 //         </form>
         
-//         <button onClick={this.loadMore}>Load more</button>
+        
 // </header>
     )
   }

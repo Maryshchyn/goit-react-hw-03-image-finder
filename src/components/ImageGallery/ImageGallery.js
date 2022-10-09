@@ -1,16 +1,13 @@
-
-
+import {ImageGalleryItem} from '../ImageGalleryItem/ImageGalleryItem'
+import {StyledList} from './ImageGallery.styled'
 
 export const ImageGallery = ({items}) => {
     return (
-        <ul >
+        <StyledList >
             {items.map(item => (
-        <li >
-            <img src={item.userImageURL} alt="" />
-        </li>
+                <ImageGalleryItem key={item.id} item={item} />
             ))}
-  
-</ul>
+        </StyledList>
     )
 }
  

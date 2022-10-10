@@ -1,5 +1,5 @@
 import { Component } from "react";
- 
+ import {Searchbarform} from './Searchbar.styled'
 
 
 export default class Searchbar extends Component{
@@ -24,7 +24,7 @@ export default class Searchbar extends Component{
     render() {
         return (
             <header >
-          <form onSubmit={this.handelrSubmit}>
+          <Searchbarform onSubmit={this.handelrSubmit}>
     <button type="submit" >
       <span >Search</span>
     </button>
@@ -38,7 +38,7 @@ export default class Searchbar extends Component{
       // autofocus
       placeholder="Search images and photos"
     />
-        </form>
+        </Searchbarform>
         
     
 </header>

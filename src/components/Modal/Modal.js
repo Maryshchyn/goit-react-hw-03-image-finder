@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { StyledOverlay, StyledModal } from './Modal.styled';
+import { StyledOverlay, StyledModal, StyledImg } from './Modal.styled';
 import { createPortal } from "react-dom";
 
 
@@ -15,20 +15,25 @@ export default class Modal extends Component {
         window.addEventListener('keydown', this.handleKeyDown)
     }
     handleKeyDown = e => {
-                if (e.code === 'Escape') {
-                    this.props.onClose()
+        if (e.code === 'Escape') {
+            console.log('esc')
+        this.props.onClose()
                     
                 }
             }
 
-
+handleOverlayClick = e => {
+    if (e.target === e.currentTarget) {
+      this.props.closeModal();
+    }
+  };
     render() {
-        
+        const { largeImg } = this.props;
         return createPortal(
-        <StyledOverlay onClick={this.handleBackDropClick}>
+        <StyledOverlay onClick={this.handleOverlayClick}>
             <StyledModal>
                 
-                <img src="" alt="" />
+                <StyledImg src={largeImg} alt="" />
             </StyledModal>
         </StyledOverlay>, madalRoot);
             

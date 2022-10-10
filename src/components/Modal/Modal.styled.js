@@ -14,9 +14,13 @@ export const StyledOverlay = styled.div`
 `;
 
 export const StyledModal = styled.div`
-  
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+
+`;
+export const StyledImg = styled.img`
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
 
 `;
 
-// max-width: calc(100vw - 48px);
-//   max-height: calc(100vh - 24px);

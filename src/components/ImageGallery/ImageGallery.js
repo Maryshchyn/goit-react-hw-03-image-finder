@@ -4,9 +4,19 @@ import {StyledList} from './ImageGallery.styled'
 export const ImageGallery = ({items}) => {
     return (
         <StyledList >
-            {items.map(item => (
-                <ImageGalleryItem key={item.id} item={item} />
-            ))}
+            {items.map(({ id, webformatURL, largeImageURL }) => {
+                return (
+                    <ImageGalleryItem
+                    key={id}
+                    smallImgLink = {webformatURL}
+                    largeImgLink={largeImageURL}
+                    
+                    />
+                )
+            }
+                
+               
+            )}
         </StyledList>
     )
 }

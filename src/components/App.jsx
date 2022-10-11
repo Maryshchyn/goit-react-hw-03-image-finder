@@ -74,7 +74,7 @@ export class App extends Component  {
     return (<>
       
       {/* <button type="button" onClick={this.toggleModal}>Load more</button> */}
-      {showModal && <Modal onClose ={this.toggleModal} />}
+      {showModal && <Modal closeModal ={this.toggleModal} />}
       
      
        {loading && <Loader />}

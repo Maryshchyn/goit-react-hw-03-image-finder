@@ -14,7 +14,20 @@ export class App extends Component  {
     showModal: false,
     largeImageURL: null,
   };
-  
+  handlerFormSubmit = query => {
+    this.setState({query})
+  }
+ 
+  hendlerButton = e => {
+   e.preventDefault()
+    this.setState({
+      page: 1,
+    query: e.target.elements.query.value,
+    items: [],
+    })
+    
+    e.target.reset()
+  }
    componentDidUpdate(_, prevState) {
     
     const {items} = this.state
@@ -39,20 +52,7 @@ export class App extends Component  {
  
     
 
-  handlerFormSubmit = query => {
-    this.setState({query})
-  }
- 
-  hendlerButton = e => {
-   e.preventDefault()
-    this.setState({
-      page: 1,
-    // query: e.target.elements.query.value,
-    items: [],
-    })
-    
-    e.target.reset()
-  }
+  
 
   loadMore = () => {
     this.setState(prevState => ({
@@ -74,7 +74,7 @@ export class App extends Component  {
     return (<>
       
       {/* <button type="button" onClick={this.toggleModal}>Load more</button> */}
-      {showModal && <Modal onClose ={this.toggleModal}><h1>qwe</h1></Modal>}
+      {showModal && <Modal onClose ={this.toggleModal} />}
       
      
        {loading && <Loader />}
@@ -85,11 +85,6 @@ export class App extends Component  {
       </>
 
 
-//       <header >
-//         {this.loading && <h1>Загружаєм</h1>}
-
-//         {this.state.foto && <div>{this.state.foto.hits[1].largeImageURL}</div>}
-//         {this.state.loading && <h1>загружаєм</h1>}
 
 
 

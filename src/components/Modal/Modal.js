@@ -7,20 +7,19 @@ const madalRoot = document.querySelector('#modal-root')
 
 export default class Modal extends Component {
     componentDidMount() {
-        window.addEventListener('keydown', this.handleKeyDown)
+        window.addEventListener('keydown', this.onClickEsc)
     }
             
                 
     componentWillUnmount() {
-        window.addEventListener('keydown', this.handleKeyDown)
+        window.addEventListener('keydown', this.onClickEsc)
     }
-    handleKeyDown = e => {
-        if (e.code === 'Escape') {
-            console.log('esc')
-        this.props.onClose()
-                    
-                }
-            }
+   onClickEsc = e => {
+    if (e.code !== 'Escape') {
+      return;
+    }
+    this.props.closeModal();
+  };
 
 handleOverlayClick = e => {
     if (e.target === e.currentTarget) {
@@ -30,7 +29,8 @@ handleOverlayClick = e => {
     render() {
         const { largeImg } = this.props;
         return createPortal(
-        <StyledOverlay onClick={this.handleOverlayClick}>
+            <StyledOverlay
+                onClick={this.handleOverlayClick}>
             <StyledModal>
                 
                 <StyledImg src={largeImg} alt="" />

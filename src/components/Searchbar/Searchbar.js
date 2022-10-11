@@ -8,11 +8,12 @@ export default class Searchbar extends Component{
     }
 
     handlerSearchChange = e => {
-        this.setState({query: e.currentTarget.value.toLowerCase()})
+        this.setState({ query: e.currentTarget.value.toLowerCase() })
+        
     }
     handelrSubmit = e => {
         e.preventDefault();
-
+        
         if (this.state.query.trim() === '') {
             alert('Введіть щось');
             return
@@ -20,11 +21,12 @@ export default class Searchbar extends Component{
         this.setState({ query: '' })
         this.props.onSubmit(this.state.query)
     }
+    
 
     render() {
         return (
             <header >
-          <Searchbarform onSubmit={this.handelrSubmit}>
+          <Searchbarform onSubmit={this.handelrSubmit} >
     <button type="submit" >
       <span >Search</span>
     </button>

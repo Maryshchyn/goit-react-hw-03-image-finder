@@ -13,12 +13,14 @@ export class App extends Component  {
     loading: false,
     showModal: false,
     largeImageURL: null,
+    lastPage: false,
   };
   handlerFormSubmit = query => {
     this.setState({
       query,
       page: 1,
       items: [],
+      lastPage: false,
     })
   }
  
@@ -36,10 +38,14 @@ export class App extends Component  {
      this.setState({loading: true})
       fetch(`https://pixabay.com/api/?q=${thisFoto}&page=${thisPage}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`)
         .then(res => { return res.json() })
-        .then(({ hits }) => this.setState(({ items }) => ({
-          items: [...items, ...hits],
-        })))
-        .then(console.log)
+        .then(res => {
+          this.setState(({ items }) => ({
+            items: [...items, ...res.hits],
+          }));
+          if (Math.ceil(res.total / 12) === this.state.page) {
+            return this.setState({ lastPage: true });
+          }
+        })
         .finally(()=>this.setState({loading: false}))
     }
     
@@ -57,8 +63,10 @@ export class App extends Component  {
     }))
   }
   render() {
-    const { showModal, items, loading } = this.state;
+    const { showModal, items, loading, lastPage } = this.state;
     return (<>
+      
+      
       
       
       {showModal && <Modal closeModal ={this.toggleModal} />}
@@ -67,7 +75,8 @@ export class App extends Component  {
        {loading && <Loader />}
       <Searchbar onSubmit={this.handlerFormSubmit}  />
       <ImageGallery items={items} />
-     {items.length > 0 && <Button onClick={this.loadMore}  />}
+      {items.length > 0 && !lastPage && <Button onClick={this.loadMore}  />}
+     
       
       </>
 

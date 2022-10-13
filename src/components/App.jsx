@@ -27,11 +27,11 @@ export class App extends Component  {
   
    componentDidUpdate(_, prevState) {
     
-    // const {items} = this.state
-    if (prevState.query !== this.state.query || prevState.page !== this.state.page) {
+    const {query, page} = this.state
+    if (prevState.query !== query || prevState.page !== page) {
       const API_KEY = '29484059-072d6a524128743cd311d2d11';
-      const thisFoto = this.state.query;
-      const thisPage = this.state.page;
+      const thisFoto = query;
+      const thisPage = page;
     
       
       
@@ -42,7 +42,7 @@ export class App extends Component  {
           this.setState(({ items }) => ({
             items: [...items, ...res.hits],
           }));
-          if (Math.ceil(res.total / 12) === this.state.page) {
+          if (Math.ceil(res.total / 12) === page) {
             return this.setState({ lastPage: true });
           }
         })
